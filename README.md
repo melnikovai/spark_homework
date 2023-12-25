@@ -19,5 +19,5 @@ Folder `/data` contains 2 csv samples - small dataset with URLs about Apache Spa
 ## Task 2. Monitoring
 ### Requirements
 Company uses propriatary monitorng system, that doesn't have Spark connector. We need to send data ourself to that server so we need a custom listener of the Spark instance.
-Please, implement cumtom QueryExecutionListener that will output CPU usage and allocated heap RAM that required to execute Task 1.
-Since it is prototype for the real listener, STDOUT as output is good enough at this stage.
+Please, implement custom QueryExecutionListener that will output CPU usage, written rows and allocated heap RAM that required to execute Task 1.
+Since it is prototype for the real listener, STDOUT as output is good enough at this stage. Result string format is irrelevant since the metrics will be compacted in JSON in real listener. 
