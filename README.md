@@ -11,9 +11,10 @@
 Folder `/data` contains 2 csv samples - small dataset with URLs about Apache Spark and countries IDs which videos we are interested in (1 means we are interested, 0 means no).
 ### Requirements
 - Extract video's id from URL (`v` or `jumpid` keys). Please, use UDF and [scala-uri](https://github.com/lemonlabsuk/scala-uri) module for it.
+- Extract domain and subpath for resource into `domain` and `subpath` columns
 - Filter rows so that result dataset would contain videos only from given countries. Solution must be highly performant
 - Filling gaps. All string columns must be filled with `unknown` literal, numeric columns must be filled with `NULL`
-- Additional columns. If video marked as `short` new column should contain `short` for it, `video` the otherwise.
+- Additional columns. If video marked as `short` new column should contain `short` for it, `video` the otherwise
 - Video length column must be converted from total seconds format to `MM:ss` format
 
 ## Task 2. Monitoring
