@@ -1,8 +1,6 @@
 package pl.wisniewskimic.spark.task
 
-import org.apache.spark.sql.types.{DataTypes, StringType}
 import io.lemonlabs.uri.Url
-import org.apache.spark.sql.functions.udf
 
 object UrlExtractor {
 
@@ -24,14 +22,6 @@ object UrlExtractor {
   case object Short extends ContentTypeEnum
 
 
-//  val urlStructType = DataTypes.createStructType(Array(
-//    DataTypes.createStructField("domain", StringType, true),
-//    DataTypes.createStructField("subpath", StringType, true),
-//    DataTypes.createStructField("videoId", StringType, true),
-//    DataTypes.createStructField("contentType", StringType, true),
-//  ))
-
-
   def extractUrl(url: String): UrlStruct = {
     Url.parseOption(url) match {
       case Some(parsedUrl) =>
@@ -44,7 +34,6 @@ object UrlExtractor {
     }
   }
 
-  val extractUrlUdf = udf( x => extractUrl(x) )
 
   private def extractHost(parsedUrl: Url): Option[String] = {
     parsedUrl.hostOption match {
@@ -69,7 +58,7 @@ object UrlExtractor {
   }
 
   private def extractContentType(parsedUrl: Url): ContentTypeEnum = {
-    parsedUrl.path.parts.contains("short") match {
+    parsedUrl.path.parts.contains("shorts") match {
       case true => Short
       case false => Video
     }
