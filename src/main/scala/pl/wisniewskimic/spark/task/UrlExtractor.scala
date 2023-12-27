@@ -11,7 +11,7 @@ object UrlExtractor {
 
   val unparsableUrlStruct = UrlStruct(None, None, None, Video.toString)
 
-  private val idSupportedKeys = Seq("v", "jumpid")
+  private val idSupportedKeys = Seq("v", "jumpId")
   sealed trait ContentTypeEnum {
     override def toString: String = this match {
       case Video => "video"
@@ -23,6 +23,8 @@ object UrlExtractor {
 
 
   def extractUrl(url: String): UrlStruct = {
+    if (url == null) unparsableUrlStruct
+    else
     Url.parseOption(url) match {
       case Some(parsedUrl) =>
         UrlStruct(
