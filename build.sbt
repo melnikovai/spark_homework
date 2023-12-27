@@ -14,6 +14,8 @@ libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion % "provi
 libraryDependencies += "com.github.scopt" %% "scopt" % "4.1.0"
 libraryDependencies += "io.lemonlabs" %% "scala-uri" % "4.0.3"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test"
+libraryDependencies += "org.json4s" %% "json4s-native" % "3.5.3"
+
 
 // https://github.com/typelevel/cats/issues/3628
 assembly / assemblyShadeRules := Seq(

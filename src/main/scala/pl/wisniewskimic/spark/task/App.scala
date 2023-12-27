@@ -12,7 +12,7 @@ object App {
     filesPathsOpt match {
       case None => println("Invalid arguments. Provide --urls --countries and --output file paths parameters.")
       case Some(filesPaths) =>
-        val session = createSession()
+        val session = createSession(appName = "wisniewskimic videos")
 
         val extractUrlUdf = udf( x => extractUrl(x) )
 
@@ -52,11 +52,16 @@ object App {
     }
   }
 
-  def createSession(): SparkSession = {
-    SparkSession
+  def createSession(appName: String): SparkSession = {
+    val session = SparkSession
       .builder
-      .appName("Task1")
+      .appName(appName)
       .getOrCreate()
+
+    val customListener = new CustomQueryExecutionListener(appName)
+    session.sparkContext.addSparkListener(customListener)
+
+    session
   }
 
   val default_values = Map(
